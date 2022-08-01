@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="Main" Id="{132555af-70b5-499a-bab7-29807b28ed6c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Main
+VAR
+	//declare motion stage objects to connect with io
+	//SAMPLE_Y
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:ALL_H'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:SAMPLE_Y'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E2 (EL1088)^Channel 1^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E2 (EL1088)^Channel 3^Input
+    '}
+	M1 : DUT_MotionStage;
+	//XTAL1_X
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:ALL_V'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL1_X'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E2 (EL1088)^Channel 4^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E2 (EL1088)^Channel 2^Input
+    '}
+	M2 : DUT_MotionStage;
+	//XTAL1_CHI
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:XTAL_TH'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL1_CHI'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E5 (EL1088)^Channel 3^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E5 (EL1088)^Channel 1^Input
+    '}
+	M3 : DUT_MotionStage;
+	////XTAL1_TH
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:XTAL_TTH'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL1_TH'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E5 (EL1088)^Channel 4^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E5 (EL1088)^Channel 2^Input
+    '}
+	M4 : DUT_MotionStage;
+	////XTAL2_CHI
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:XTAL_H'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL2_CHI'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E8 (EL1088)^Channel 3^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E8 (EL1088)^Channel 1^Input
+    '}
+	M5 : DUT_MotionStage;
+	//XTAL2_TH
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:XTAL_V'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL2_TH'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E8 (EL1088)^Channel 4^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E8 (EL1088)^Channel 2^Input
+    '}
+	M6 : DUT_MotionStage;
+	//XTAL3_CHI
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:DET_H'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL3_CHI'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E11 (EL1088)^Channel 3^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E11 (EL1088)^Channel 1^Input
+    '}
+	M7 : DUT_MotionStage;
+	//XTAL3_TH
+	//{attribute 'pytmc' := 'pv: HXX:HXSS:ROV:MMS:DET_V'}
+	{attribute 'pytmc' := 'pv: BERG:MMS:XTAL3_TH'}
+	{attribute 'TcLinkTo' := '.bLimitForwardEnable  := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E11 (EL1088)^Channel 4^Input;
+                              .bLimitBackwardEnable := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^E11 (EL1088)^Channel 2^Input
+    '}
+	M8 : DUT_MotionStage;
+	//declare axes
+	fbMotion1 : FB_MotionStage;  
+	fbMotion2 : FB_MotionStage;
+	fbMotion3 : FB_MotionStage;
+	fbMotion4 : FB_MotionStage;
+	fbMotion5 : FB_MotionStage;
+	fbMotion6 : FB_MotionStage;
+	fbMotion7 : FB_MotionStage;
+	fbMotion8 : FB_MotionStage;
+END_VAR
+
+    ]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//invoke axes
+fbMotion1(stMotionStage:=M1);
+fbMotion2(stMotionStage:=M2);
+fbMotion3(stMotionStage:=M3);
+fbMotion4(stMotionStage:=M4);
+fbMotion5(stMotionStage:=M5);
+fbMotion6(stMotionStage:=M6);
+fbMotion7(stMotionStage:=M7);
+fbMotion8(stMotionStage:=M8);
+
+//.bHardwareEnable
+M1.bHardwareEnable:=TRUE;
+M2.bHardwareEnable:=TRUE;
+M3.bHardwareEnable:=TRUE;
+M4.bHardwareEnable:=TRUE;
+M5.bHardwareEnable:=TRUE;
+M6.bHardwareEnable:=TRUE;
+M7.bHardwareEnable:=TRUE;
+M8.bHardwareEnable:=TRUE;
+
+//.bPowerSelf
+M1.bPowerSelf:=TRUE;
+M2.bPowerSelf:=TRUE;
+M3.bPowerSelf:=TRUE;
+M4.bPowerSelf:=TRUE;
+M5.bPowerSelf:=TRUE;
+M6.bPowerSelf:=TRUE;
+M7.bPowerSelf:=TRUE;
+M8.bPowerSelf:=TRUE;
+
+//Limit switches
+//M3.bLimitBackwardEnable:=TRUE;
+//M3.bLimitForwardEnable:=TRUE;
+//M4.bLimitBackwardEnable:=TRUE;
+//M4.bLimitForwardEnable:=TRUE;]]></ST>
+    </Implementation>
+    <LineIds Name="Main">
+      <LineId Id="3" Count="33" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
