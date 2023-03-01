@@ -1,0 +1,21 @@
+
+Pragmas
+-------
+
+.. csv-table::
+    :header: PLC Name, Total Pragmas, Errors
+    :align: center
+
+    :ref:`lcls_plc_bergmann_kohzu <lcls_plc_bergmann_kohzu_overview_pragmas>`, 24, 0
+
+
+.. _lcls_plc_bergmann_kohzu_overview_pragmas:
+
+
+lcls_plc_bergmann_kohzu
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Total pragmas found: 24
+Total linter errors: 0
+
+
